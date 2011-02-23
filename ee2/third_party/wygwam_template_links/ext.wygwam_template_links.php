@@ -79,7 +79,7 @@ class Wygwam_template_links_ext {
 
 		$site_id  = $this->EE->config->item('site_id');
 		$site_url = $this->EE->config->item('site_url');
-		$templates_str = $this->EE->lang->line('templates');
+		$templates_str = $this->EE->lang->line('nav_templates');
 
 		$query = $this->EE->db->query('SELECT t.template_name, tg.group_name
 		                               FROM exp_templates t, exp_template_groups tg

@@ -75,7 +75,7 @@ class Wygwam_template_links {
 
 		$site_id  = $PREFS->ini('site_id');
 		$site_url = $PREFS->ini('site_url');
-		$templates_str = $LANG->line('templates');
+		$templates_str = $LANG->line('design');
 
 		$query = $DB->query('SELECT t.template_name, tg.group_name
 		                     FROM exp_templates t, exp_template_groups tg
