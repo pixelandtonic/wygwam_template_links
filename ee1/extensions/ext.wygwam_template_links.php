@@ -1,6 +1,6 @@
-<?php
+<?php if (! defined('EXT')) exit('Invalid file request');
 
-if ( ! defined('EXT')) exit('Invalid file request');
+
 /**
  * Wygwam Template Links
  *
@@ -8,12 +8,11 @@ if ( ! defined('EXT')) exit('Invalid file request');
  * @copyright Copyright (c) 2011 Pixel & Tonic, Inc
  * @license   http://creativecommons.org/licenses/by-sa/3.0/ Attribution-Share Alike 3.0 Unported
  */
-
 class Wygwam_template_links {
 
 	var $name           = 'Wygwam Template Links';
 	var $version        = '1.0';
-	var $description    = 'Adds a "Site Templates" Link Type to Wygwam\'s Link dialog';
+	var $description    = 'Adds a &ldquo;Site Templates&lrquo; Link Type to Wygwam&rsquo;s Link dialog';
 	var $settings_exist = 'n';
 	var $docs_url       = 'http://github.com/brandonkelly/wygwam_template_links';
 
@@ -77,11 +76,11 @@ class Wygwam_template_links {
 		$site_id = $PREFS->ini('site_id');
 
 		$query = $DB->query('SELECT t.template_name, tg.group_name
-							 FROM exp_templates t, exp_template_groups tg
-							 WHERE t.group_id = tg.group_id
-							 AND t.site_id = '.$site_id);
+		                     FROM exp_templates t, exp_template_groups tg
+		                     WHERE t.group_id = tg.group_id
+		                     AND t.site_id = '.$site_id);
 
-		if ($query->num_rows > 0)
+		if ($query->num_rows)
 		{
 			foreach ($query->result as $entry)
 			{
@@ -93,7 +92,6 @@ class Wygwam_template_links {
 					'label'    => $full_url,
 					'url'      => $full_url
 				);
-
 			}
 		}
 

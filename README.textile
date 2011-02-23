@@ -1,6 +1,6 @@
 h1. Wygwam Template Links
 
-This ExpressionEngine extension adds a "Site Templates" option as a Link Type in Wygawm’s Link dialog that allows you to create a link to any template.
+This ExpressionEngine extension adds a “Site Templates” Link Type to Wygawm’s Link dialog, making it easy to link to your site’s templates.
 
 h3. Requirements
 

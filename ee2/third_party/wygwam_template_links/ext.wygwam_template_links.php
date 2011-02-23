@@ -1,4 +1,4 @@
-<?php if ( ! defined('APP_VER')) exit('No direct script access allowed');
+<?php if (! defined('APP_VER')) exit('No direct script access allowed');
 
 
 /**
@@ -8,7 +8,6 @@
  * @copyright Copyright (c) 2011 Pixel & Tonic, Inc
  * @license   http://creativecommons.org/licenses/by-sa/3.0/ Attribution-Share Alike 3.0 Unported
  */
-
 class Wygwam_template_links_ext {
 
 	var $name           = 'Wygwam Template Links';
@@ -81,11 +80,11 @@ class Wygwam_template_links_ext {
 		$site_id = $this->EE->config->item('site_id');
 
 		$query = $this->EE->db->query('SELECT t.template_name, tg.group_name
-							 FROM exp_templates t, exp_template_groups tg
-							 WHERE t.group_id = tg.group_id
-							 AND t.site_id = '.$site_id);
+		                               FROM exp_templates t, exp_template_groups tg
+		                               WHERE t.group_id = tg.group_id
+		                               AND t.site_id = '.$site_id);
 
-		if ($query->num_rows() > 0)
+		if ($query->num_rows())
 		{
 			foreach ($query->result_array() as $entry)
 			{
@@ -97,13 +96,9 @@ class Wygwam_template_links_ext {
 					'label'    => $full_url,
 					'url'      => $full_url
 				);
-
 			}
 		}
 
 		return $config;
 	}
 }
-
-// End of file ext.wygwam_structure_pages.php */
-// Location: ./system/expressionengine/third_party/wygwam_structure_pages/ext.wygwam_structure_pages.php
