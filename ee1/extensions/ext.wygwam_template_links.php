@@ -73,25 +73,37 @@ class Wygwam_template_links {
 			$config = $EXT->last_call;
 		}
 
-		$site_id = $PREFS->ini('site_id');
+		$site_id  = $PREFS->ini('site_id');
+		$site_url = $PREFS->ini('site_url');
 
 		$query = $DB->query('SELECT t.template_name, tg.group_name
 		                     FROM exp_templates t, exp_template_groups tg
 		                     WHERE t.group_id = tg.group_id
-		                     AND t.site_id = '.$site_id);
+		                           AND t.site_id = '.$site_id.'
+		                     ORDER BY tg.group_name, t.template_name');
 
 		if ($query->num_rows)
 		{
-			foreach ($query->result as $entry)
-			{
-				$template_name = $entry['template_name'];
-				$template_name = $template_name == 'index' ? '' : $template_name;
+			$group = '';
 
-				$full_url = rtrim($FNS->create_page_url($PREFS->ini('site_url'), $entry['group_name'].'/'.$template_name), '/');
-				$config['link_types']['Site Templates'][] = array(
-					'label'    => $full_url,
-					'url'      => $full_url
-				);
+			foreach ($query->result as $tmpl)
+			{
+				// are we starting a new group?
+				if ($tmpl['group_name'] != $group)
+				{
+					$group = $tmpl['group_name'];
+
+					$url = $FNS->create_page_url($site_url, $tmpl['group_name']);
+					$config['link_types']['Site Templates'][] = array('label' => $tmpl['group_name'], 'url' => $url);
+				}
+
+				// skip the index template
+				if ($tmpl['template_name'] == 'index') continue;
+
+				// add the template
+				$uri = $tmpl['group_name'].'/'.$tmpl['template_name'];
+				$url = $FNS->create_page_url($site_url, $uri);
+				$config['link_types']['Site Templates'][] = array('label' => $uri, 'url' => $url);
 			}
 		}
 

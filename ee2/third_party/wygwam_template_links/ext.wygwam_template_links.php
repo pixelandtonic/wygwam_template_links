@@ -77,7 +77,7 @@ class Wygwam_template_links_ext {
 			$config = $this->EE->extensions->last_call;
 		}
 
-		$site_id = $this->EE->config->item('site_id');
+		$site_id  = $this->EE->config->item('site_id');
 		$site_url = $this->EE->config->item('site_url');
 
 		$query = $this->EE->db->query('SELECT t.template_name, tg.group_name
@@ -104,6 +104,7 @@ class Wygwam_template_links_ext {
 				// skip the index template
 				if ($tmpl['template_name'] == 'index') continue;
 
+				// add the template
 				$uri = $tmpl['group_name'].'/'.$tmpl['template_name'];
 				$url = $this->EE->functions->create_page_url($site_url, $uri);
 				$config['link_types']['Site Templates'][] = array('label' => $uri, 'url' => $url);
