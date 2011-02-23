@@ -5,6 +5,8 @@ This ExpressionEngine extension adds a “Templates” Link Type to Wygawm’s L
 h3. Requirements
 
 * "Wygwam":http://pixelandtonic.com/wygwam 2.2.2 or later
+* "ExpressionEngine":http://expressionengine.com 1.7.0 or later (for EE1)
+* "ExpressionEngine":http://expressionengine.com 2.1.0 or later (for EE2)
 
 h3. Installation
 
