@@ -78,24 +78,34 @@ class Wygwam_template_links_ext {
 		}
 
 		$site_id = $this->EE->config->item('site_id');
+		$site_url = $this->EE->config->item('site_url');
 
+		// grab all templates except for the index templates
 		$query = $this->EE->db->query('SELECT t.template_name, tg.group_name
 		                               FROM exp_templates t, exp_template_groups tg
 		                               WHERE t.group_id = tg.group_id
-		                               AND t.site_id = '.$site_id);
+		                                     AND t.site_id = '.$site_id.'
+		                                     AND t.template_name != "index"
+		                               ORDER BY tg.group_name, t.template_name');
 
 		if ($query->num_rows())
 		{
-			foreach ($query->result_array() as $entry)
-			{
-				$template_name = $entry['template_name'];
-				$template_name = $template_name == 'index' ? '' : $template_name;
+			$group = '';
 
-				$full_url = rtrim($this->EE->functions->create_page_url($this->EE->config->item('site_url'), $entry['group_name'].'/'.$template_name), '/');
-				$config['link_types']['Site Templates'][] = array(
-					'label'    => $full_url,
-					'url'      => $full_url
-				);
+			foreach ($query->result_array() as $tmpl)
+			{
+				// are we starting a new group?
+				if ($tmpl['group_name'] != $group)
+				{
+					$group = $tpml['group_name'];
+
+					$url = $this->EE->functions->create_page_url($site_url, $tmpl['group_name']);
+					$config['link_types']['Site Templates'][] = array('label' => $tmpl['group_name'], 'url' => $url);
+				}
+
+				$uri = $tmpl['group_name'].'/'.$tmpl['template_name'];
+				$url = $this->EE->functions->create_page_url($site_url, $uri);
+				$config['link_types']['Site Templates'][] = array('label' => $uri, 'url' => $url);
 			}
 		}
 
