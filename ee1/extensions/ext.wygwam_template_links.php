@@ -95,7 +95,11 @@ class Wygwam_template_links {
 					$group = $tmpl['group_name'];
 
 					$url = $FNS->create_page_url($site_url, $tmpl['group_name']);
-					$config['link_types'][$templates_str][] = array('label' => $tmpl['group_name'], 'url' => $url);
+
+					$config['link_types'][$templates_str][] = array(
+						'label' => $tmpl['group_name'].'/',
+						'url'   => $url
+					);
 				}
 
 				// skip the index template
@@ -104,7 +108,12 @@ class Wygwam_template_links {
 				// add the template
 				$uri = $tmpl['group_name'].'/'.$tmpl['template_name'];
 				$url = $FNS->create_page_url($site_url, $uri);
-				$config['link_types'][$templates_str][] = array('label' => $uri, 'url' => $url);
+
+				$config['link_types'][$templates_str][] = array(
+					'label_depth' => 1,
+					'label'       => $tmpl['template_name'],
+					'url'         => $url
+				);
 			}
 		}
 
