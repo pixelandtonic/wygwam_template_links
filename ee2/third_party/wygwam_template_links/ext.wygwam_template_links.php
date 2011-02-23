@@ -12,7 +12,7 @@ class Wygwam_template_links_ext {
 
 	var $name           = 'Wygwam Template Links';
 	var $version        = '1.0';
-	var $description    = 'Adds a “Site Templates” Link Type to Wygwam’s Link dialog';
+	var $description    = 'Adds a “Templates” Link Type to Wygwam’s Link dialog';
 	var $settings_exist = 'n';
 	var $docs_url       = 'http://github.com/brandonkelly/wygwam_template_link';
 
@@ -79,6 +79,7 @@ class Wygwam_template_links_ext {
 
 		$site_id  = $this->EE->config->item('site_id');
 		$site_url = $this->EE->config->item('site_url');
+		$templates_str = $this->EE->lang->line('templates');
 
 		$query = $this->EE->db->query('SELECT t.template_name, tg.group_name
 		                               FROM exp_templates t, exp_template_groups tg
@@ -98,7 +99,7 @@ class Wygwam_template_links_ext {
 					$group = $tmpl['group_name'];
 
 					$url = $this->EE->functions->create_page_url($site_url, $tmpl['group_name']);
-					$config['link_types']['Site Templates'][] = array('label' => $tmpl['group_name'], 'url' => $url);
+					$config['link_types'][$templates_str][] = array('label' => $tmpl['group_name'], 'url' => $url);
 				}
 
 				// skip the index template
@@ -107,7 +108,7 @@ class Wygwam_template_links_ext {
 				// add the template
 				$uri = $tmpl['group_name'].'/'.$tmpl['template_name'];
 				$url = $this->EE->functions->create_page_url($site_url, $uri);
-				$config['link_types']['Site Templates'][] = array('label' => $uri, 'url' => $url);
+				$config['link_types'][$templates_str][] = array('label' => $uri, 'url' => $url);
 			}
 		}
 		return $config;

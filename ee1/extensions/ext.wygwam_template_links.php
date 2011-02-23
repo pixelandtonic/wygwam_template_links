@@ -12,7 +12,7 @@ class Wygwam_template_links {
 
 	var $name           = 'Wygwam Template Links';
 	var $version        = '1.0';
-	var $description    = 'Adds a &ldquo;Site Templates&lrquo; Link Type to Wygwam&rsquo;s Link dialog';
+	var $description    = 'Adds a &ldquo;Templates&lrquo; Link Type to Wygwam&rsquo;s Link dialog';
 	var $settings_exist = 'n';
 	var $docs_url       = 'http://github.com/brandonkelly/wygwam_template_links';
 
@@ -64,7 +64,7 @@ class Wygwam_template_links {
 	 */
 	function wygwam_config($config, $settings)
 	{
-		global $EXT, $FNS, $DB, $PREFS;
+		global $EXT, $FNS, $DB, $PREFS, $LANG;
 
 		// If another extension shares the same hook,
 		// we need to get the latest and greatest config
@@ -75,6 +75,7 @@ class Wygwam_template_links {
 
 		$site_id  = $PREFS->ini('site_id');
 		$site_url = $PREFS->ini('site_url');
+		$templates_str = $LANG->line('templates');
 
 		$query = $DB->query('SELECT t.template_name, tg.group_name
 		                     FROM exp_templates t, exp_template_groups tg
@@ -94,7 +95,7 @@ class Wygwam_template_links {
 					$group = $tmpl['group_name'];
 
 					$url = $FNS->create_page_url($site_url, $tmpl['group_name']);
-					$config['link_types']['Site Templates'][] = array('label' => $tmpl['group_name'], 'url' => $url);
+					$config['link_types'][$templates_str][] = array('label' => $tmpl['group_name'], 'url' => $url);
 				}
 
 				// skip the index template
@@ -103,7 +104,7 @@ class Wygwam_template_links {
 				// add the template
 				$uri = $tmpl['group_name'].'/'.$tmpl['template_name'];
 				$url = $FNS->create_page_url($site_url, $uri);
-				$config['link_types']['Site Templates'][] = array('label' => $uri, 'url' => $url);
+				$config['link_types'][$templates_str][] = array('label' => $uri, 'url' => $url);
 			}
 		}
 
