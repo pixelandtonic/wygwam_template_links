@@ -11,7 +11,7 @@
 class Wygwam_template_links_ext {
 
 	var $name           = 'Wygwam Template Links';
-	var $version        = '1.0';
+	var $version        = '1.0.1';
 	var $description    = 'Adds a “Templates” Link Type to Wygwam’s Link dialog';
 	var $settings_exist = 'n';
 	var $docs_url       = 'http://github.com/brandonkelly/wygwam_template_link';
