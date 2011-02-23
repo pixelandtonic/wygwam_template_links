@@ -1,0 +1,19 @@
+h1. Wygwam Template Links
+
+This ExpressionEngine extension adds a "Site Template" option as a Link Type in Wygawm’s Link dialog that allows you to create a link to any template.
+
+h3. Requirements
+
+* "Wygwam":http://pixelandtonic.com/wygwam 2.2.2 or later
+
+h3. Installation
+
+h4. EE1 Installation Instructions
+
+* Upload ee1/extensions/ext.wygwam_template_links.php to system/extensions/
+* Enable Wygwam Template Links in Admin → Utilities → Extensions Manager
+
+h4. EE2 Installation Instructions
+
+* Upload the ee2/third_party/wygwam_template_links folder to system/expressionengine/third_party/
+* Enable Wygwam Template Links in Add-Ons → Extensions
