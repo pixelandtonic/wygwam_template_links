@@ -13,7 +13,7 @@ class Wygwam_template_links_ext {
 
 	var $name           = 'Wygwam Template Links';
 	var $version        = '1.0';
-	var $description    = 'Adds a “Site Template” Link Type to Wygwam’s Link dialog';
+	var $description    = 'Adds a “Site Templates” Link Type to Wygwam’s Link dialog';
 	var $settings_exist = 'n';
 	var $docs_url       = 'http://github.com/brandonkelly/wygwam_template_link';
 
@@ -93,7 +93,7 @@ class Wygwam_template_links_ext {
 				$template_name = $template_name == 'index' ? '' : $template_name;
 
 				$full_url = rtrim($this->EE->functions->create_page_url($this->EE->config->item('site_url'), $entry['group_name'].'/'.$template_name), '/');
-				$config['link_types']['Site Template'][] = array(
+				$config['link_types']['Site Templates'][] = array(
 					'label'    => $full_url,
 					'url'      => $full_url
 				);
